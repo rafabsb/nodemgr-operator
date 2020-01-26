@@ -1,0 +1,12 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nodemgr-operator
+subjects:
+- kind: ServiceAccount
+  name: nodemgr-operator
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: nodemgr-operator
+  apiGroup: rbac.authorization.k8s.io

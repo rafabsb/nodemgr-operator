@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodemgr-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nodemgr-operator
+  template:
+    metadata:
+      labels:
+        name: nodemgr-operator
+    spec:
+      serviceAccountName: nodemgr-operator
+      containers:
+        - name: nodemgr-operator
+          # Replace this with the built image name
+          image: REPLACE_IMAGE
+          command:
+          - nodemgr-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              value: ""
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "nodemgr-operator"

@@ -1,0 +1,46 @@
+---
+apiVersion: rafabsb.com/v1alpha1
+kind: Nodemgr
+metadata:
+  name: kind-worker
+spec:
+  labels:
+    node.rafabsb.com/cluster: asdasdd
+    node.rafabsb.com/physicalhost: vpx.df.intranet.com.br
+    node.rafabsb.com/hostname: rafael
+    node.rafabsb.com/ip: "192.168.5.9"
+    node.rafabsb.com/labelsemver: "0.1.0"
+    node.rafabsb.com/network: local
+    node.rafabsb.com/site: xxt1
+    node.rafabsb.com/os: windows 
+    node.rafabsb.com/provider: kvm
+    node.rafabsb.com/vlanid: "123"
+    node.rafabsb.com/proxy: "true"
+    feature.node.rafabsb.com/lc: "true"
+  taints:
+    - effect: NoSchedule
+      key: node.rafabsb.com/network
+      value: local
+    - effect: NoSchedule
+      key: node.rafabsb.com/keycerto
+      value: keycertao
+  annotations:
+    lb: 
+      - name: nome-do-balanceador
+        dns: dns.example.com
+        instances:
+          - name: "dxl1pscln005"
+            type: "haproxy"
+            site: "cct1"
+            network: "desenv"
+            ip: "172.172.172.172"
+            localport: [24000,48897]
+  #     - name: nome-do-balanceador2
+  #       dns: dns.example.com2
+  #       instances:
+  #         - name: "dxl1pscln005"
+  #           type: "haproxy"
+  #           site: "cct1"
+  #           network: "desenv"
+  #           ip: "172.172.172.172"
+  #           localport: [24000,48896]
